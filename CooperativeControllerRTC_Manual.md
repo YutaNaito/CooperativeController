@@ -51,8 +51,6 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 ### 1.4. 入力装置
 図1に操作者側(以降マスタ側)で使用する操縦装置を示す．操縦装置はNovint社のFalcon，3自由度のゲームコントローラーであり，X,Y,Zの3軸の位置及び速度の計測やモータのフィードバック機能による反力提示が可能である．
 
-[図1.３自由度操縦装](https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Falcon.png)
-
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Falcon.png" align="middle">
 </div>
