@@ -52,7 +52,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 図1に操作者側(以降マスタ側)で使用する操縦装置を示す．操縦装置はNovint社のFalcon，3自由度のゲームコントローラーであり，X,Y,Zの3軸の位置及び速度の計測やモータのフィードバック機能による反力提示が可能である．
 
 <div align="center">
-<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Falcon.png" align="middle">
+<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Falcon.png" size="1" align="middle">
 <br><b>Fig1. ３自由度操縦装</b>
 </div>
 <br>
@@ -195,7 +195,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 そこで，本RTCでは操作装置より受信したハンドル部の3軸の位置(X[m]，Y[m]，Z[m])の変化量，つまり速度を求め，ローパスフィルタとして移動平均を行った速度から最小二乗法で逐次傾きを求める．そして，評価関数として利用するシグモイド関数に代入して得た値から制御するロボットを決定する．以下に示すシグモイド関数はa>0に対してa→∞のときステップ関数に近づく．この性質を利用することで操作装置の入力から，操作量の変化の小さいロボットアームとそうでない移動台車を判別し制御するロボットを決定する．
 
 <div align="center">
-<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Sigmoid.png" size="2" align="middle">
+<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Sigmoid.png" size="1" align="middle">
 <br>シグモイド関数
 </div>
 <br>
