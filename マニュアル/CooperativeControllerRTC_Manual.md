@@ -52,9 +52,10 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 図1に操作者側(以降マスタ側)で使用する操縦装置を示す．操縦装置はNovint社のFalcon，3自由度のゲームコントローラーであり，X,Y,Zの3軸の位置及び速度の計測やモータのフィードバック機能による反力提示が可能である．
 
 <div align="center">
-<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Falcon.png" size="1" align="middle">
+<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Falcon.png" align="middle">
 <br><b>Fig1. ３自由度操縦装</b>
 </div>
+<br>
 <br>
 
 ### 1.5. 移動作業ロボット
@@ -65,6 +66,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 <br><b>Fig2. 移動作業ロボット</b>
 </div>
 <br>
+<br>
 
 ### 1.6 クライアント協調型フレキシブル遠隔操作システムの構成
 図3にクライアント協調型フレキシブル遠隔操作システムの概要を示す．各ロボットの制御プログラムやRSNPのクライアントはRTコンポーネント[3]から構成されている．ピックアンドプレイスなどの作業内容によっては移動台車とロボットアームが一体となって動作させる必要があり，その際は測域センサのデータからロボット周辺の障害物の位置によって開発する協調制御RTCで操作するロボットを切り替える協調制御を行う．本コンポーネントは，TCP/IP通信などの無線LAN環境下での使用も可能である．
@@ -74,6 +76,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 <br><b>Fig3. 各クライアント協調時のシステム概要</b>
 </div>
 <br>
+<br>
 
 また図4のように各クライアントでロボット単体での遠隔操作システムとして使用することが可能である．組み合わせてロボット一体型の遠隔操作システムとしても扱うこともできる．
 
@@ -81,6 +84,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/EachClientSystemView.png" align="middle">
 <br><b>Fig4. 各クライアント単体でのシステム概要</b>
 </div>
+<br>
 <br>
 
 ### 1.7　RTシステム構成
@@ -92,15 +96,20 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 <br><b>Fig5. RTシステム構成(マスタ側)</b>
 </div>
 <br> 
+<br>
 
 <div align="center">
 <b>Table1. RTC概要(マスタ側)</b>
+<div align="center">
 
 |RTC名称|用途|
 |:--|:--|
 |MobileRobotMasterClient1()|RSPNサーバーとの通信及びデータの送受信用|
 |FalconController()|操作装置入力用|
 </div>
+
+</div>
+<br>
 <br>
 マスタ側は２つのRTコンポーネントから構成されている．２つのコンポーネントは先行研究で開発されたRTCを再利用したものである．FalconControllerで操作装置のグリップ部の３自由度の位置(X[m]，Y[m]，Z[m])とボタンの入力値を読み取り，その値からロボットアームと移動台車への指令値を生成する．そして，各ロボットの指令値と操作装置の入力値をMobileRobotMasterClientからRSNPサーバーに送信する．
 <br>
@@ -108,13 +117,14 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 #### スレーブ側
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/SystemConfigurationSlave.png" align="middle">
-<br>
-<b>Fig6. RTシステム概要(スレーブ側)</b>
+<br><b>Fig6. RTシステム概要(スレーブ側)</b>
 </div>
+<br>
 <br>
 
 <div align="center">
 <b>Table2. RTC概要(スレーブ側)</b>
+<div align="center">
 
 | RTC名称 | 用途 |
 |:--|:--|
@@ -128,7 +138,10 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 |CameraRSNPClient()|RSNPサーバーとの通信及びデータの送受信用|
 |Screen_capture()|画像取得用|
 |CooperativeController()|協調制御用|
+
 </div>
+</div>
+<br>
 <br>
 スレーブ側は10個のRTコンポーネントから構成されている．CooperativeController以外は先行研究で開発されたRTCを再利用したものである．主にロボットアームを制御するロボットアーム制御RTC群，移動台車を制御する移動台車制御RTC群，カメラ画像を取得するカメラRTC群からなっている．各RSNPクライアントRTコンポーネントでRSNPサーバーとの通信やマスタ側とのデータの送受信を行う．ロボットアーム制御RTC群では，MikataArmRSNPClientがRSNPサーバーからロボットアームの指令値(手先の位置X[m]，Y[m]，Z[m]，Pitch[rad])を受け取り，MikataArmKinemaを通して各関節の目標角度を算出し，MikataArmControllerでロボットアームを制御する．移動台車制御RTC群では，iXsRSNPClientがRSNPサーバーから移動台車の指令値(直進速度[m/s]，旋回速度[rad/s])を受け取り，RTC_iWs09で移動台車を制御する．カメラ制御RTC群では，Screen_captureで取得した画 像をCameraRSNPClientでRSNPサーバーに送りWebブラウザ上に表示する．
 
@@ -141,16 +154,18 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 <br><b>Fig7. 協調制御RTC</b>
 </div>
 <br>
+<br>
 開発した本RTCは，操作装置の入力値からロボットアームか移動台車どちらの制御を行うかを決定し，測域センサのデータから障害物の検出した位置によってロボットアームと移動台車の指令値に補正を行う ．図8に開発した協調制御RTCの接続イメージを示す．InPortには，ロボットアーム及び移動台車への指令値，そ操作装置の入力値，測域センサのデータを送信するポートを接続する．本稿で使用するロボットアームは４自由度，操作装置は３自由度の操作装置であるが，Configurationの値より操作装置とロボットアームの自由度は変更可能である．操縦装置の自由度は最大で３自由度，ロボットアームの自由度は最大でハンド含めて７自由度である．操縦装置は本稿で使用している３自由度の装置だけでなく，２自由度であるジョイスティックなどの操縦装置でも使用可能である．OutPortには，ロボットアームと移動台車を制御するRTコンポーネントで指令値を受信するポートを接続して使用する．表3，4，5にInPort，OutPort，Configurationの概要を示す．
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/CooperativeControllerRTCConnectionImage.png" align="middle">
 <br><b>Fig8. 協調制御RTCの接続イメージ</b>
 </div>
 <br>
+<br>
 
 <div align="center">
-<br> 
-<b>Table3. 協調制御RTC概要(InPort)</b>
+<br><b>Table3. 協調制御RTC概要(InPort)</b>
+<div align="center">
 
 |InPort名称|データ型|機能<br>データの例|
 |:--|:--|:--|
@@ -159,28 +174,31 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 |LRF|RangeData|測域センサのレーザーn本の各長さ[mm]を取得<br>LRF.ranges.data[0] = レーザーの長さ<br>≀<br>LRF.ranges.data[n] = レーザーの長さ|
 |ControlleValue|TimedDoubleSeq|操作装置の入力値を取得．操縦装置の自由度は最大で３自由<br><br>ControlleValue.data[0] = X軸方向の入力[m]<br>ControlleValue.data[1] = Y軸方向の入力[m]<br>ControlleValue.data[2] = Z軸方向の入力[m]|
 </div>
+</div>
 <br>
 
 <div align="center">
-<br> 
-<b>Table4. 協調制御RTC概要(OutPort)</b>
+<br><b>Table4. 協調制御RTC概要(OutPort)</b>
+<div align="center">
 
 |OutPort名称|データ型|機能|
 |:--|:--|:--|
 |CooperativeArm|TimedDoubleSeq|補正したロボットアームの手先の目標位置[m]及び姿勢[rad]，ハンドの開閉角度[rad]を出力<br><br>CooperativeArm.data[0] = 手先補正位置X[m]<br>CooperativeArm.data[1] = 手先補正位置Y[m]<br>CooperativeArm.data[2] = 手先補正位置Z[m]<br>CooperativeArm.data[3] = 手先補正姿勢Roll[rad]<br>CooperativeArm.data[4] = 手先補正姿勢Pitch[rad]<br>CooperativeArm.data[5] = 手先補正姿勢Yaw[rad]<br>CooperativeArm.data[6] = ハンドの補正開閉角度[rad]|
 |CooperativeMobile|TimedVelocity2D|補正した移動台車への直進速度[m/s]及び旋回角度[rad]を出力<br><br>TimedVelocity2D.data.vx = 直進速度[m/s]<br>TimedVelocity2D.data.va = 旋回角速度[rad/s]|
 </div>
+</div>
 <br>
 
 <div align="center">
-<br> 
-<b>Table5. 協調制御RTC概要(Configuration)</b>
+<br><b>Table5. 協調制御RTC概要(Configuration)</b>
+<div align="center">
 
 |Configuration名称|データ型|機能|
 |:--|:--|:--|
 |inputDOF|int|操作装置の自由度|
 |armDOF|int|ロボットアームの自由度|
 |offset|double|制御ロボット切り替え時の入力値のオフセット|
+</div>
 </div>
 <br>
 
@@ -191,12 +209,12 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 <br><b>Fig9. 移動台車操作時(左)とロボットアームの操作時(右)の操作装置の値</b>
 </div>
 <br>
+<br>
 
 そこで，本RTCでは操作装置より受信したハンドル部の3軸の位置(X[m]，Y[m]，Z[m])の変化量，つまり速度を求め，ローパスフィルタとして移動平均を行った速度から最小二乗法で逐次傾きを求める．そして，評価関数として利用するシグモイド関数に代入して得た値から制御するロボットを決定する．以下に示すシグモイド関数はa>0に対してa→∞のときステップ関数に近づく．この性質を利用することで操作装置の入力から，操作量の変化の小さいロボットアームとそうでない移動台車を判別し制御するロボットを決定する．
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Sigmoid.png" size="1" align="middle">
-<br>シグモイド関数
 </div>
 <br>
 
@@ -207,15 +225,17 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 <br><b>Fig10. 測域センサの障害物検出範囲</b>
 </div>
 <br>
+<br>
 
 <div align="center">
 <b>Table6. 測域センサによる補正内容]()</b>
-
+<div align="center">
 |障害物の位置|指令値の補正内容|
 |:--:|:--|
 |①|移動台車の指令値を全て0に補正|
 |②|移動台車の直進成分とロボットアームのY軸方向の指令値を0に補正|
 |①と②以外|ロボットアームの指令値を全て0に補正|
+</div>
 </div>
 <br>
 
@@ -228,6 +248,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <b>Table7. 用意するハードウェア</b>
+<div align="center">
 
 |名称|数量|
 |:--|:--|
@@ -239,6 +260,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 |サーバーPC|1|
 |モバイルルーター|1|
 |バッテリー|1|
+</div>
 </div>
 
 ### 3.2 動作環境
@@ -269,6 +291,7 @@ Eclipseを起動してRSNPサーバーのウィンドウから使用するサー
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/ServerWindow.png" align="middle">
 <br><b>Fig11. サーバーウィンドウ</b>
 </div>
+<br>
 <br>
 
 #### 4. クライアントの準備
@@ -301,6 +324,7 @@ Eclipseを起動してRSNPサーバーのウィンドウから使用するサー
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/ConfigurationSetupWindow.png" align="middle">
 <br><b>Fig12. コンフィギュレーション値設定画面</b>
 </div>
+<br>
 <br>
 
 #### 7. システムの起動
