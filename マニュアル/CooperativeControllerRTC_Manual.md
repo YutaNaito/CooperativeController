@@ -243,7 +243,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 ### 3.3 利用手順
 
-##### 1. PCの起動
+#### 1. PCの起動
 マスタ側とスレーブ側，RSNPサーバーに使用するPCの電源を入れる
      
 #### 2. ロボットの電源
