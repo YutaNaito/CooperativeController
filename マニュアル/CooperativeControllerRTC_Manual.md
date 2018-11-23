@@ -53,10 +53,8 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Falcon.png" align="middle">
-図1.３自由度操縦装
+<br>図1.３自由度操縦装
 </div>
-
-
 <br>
 
 ### 1.5. 移動作業ロボット
@@ -64,23 +62,26 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/WorkingMobility.png" align="middle">
-図2 移動作業ロボット
+<br>図2 移動作業ロボット
 </div>
+<br>
 
 ### 1.6 クライアント協調型フレキシブル遠隔操作システムの構成
 図3にクライアント協調型フレキシブル遠隔操作システムの概要を示す．各ロボットの制御プログラムやRSNPのクライアントはRTコンポーネント[3]から構成されている．ピックアンドプレイスなどの作業内容によっては移動台車とロボットアームが一体となって動作させる必要があり，その際は測域センサのデータからロボット周辺の障害物の位置によって開発する協調制御RTCで操作するロボットを切り替える協調制御を行う．本コンポーネントは，TCP/IP通信などの無線LAN環境下での使用も可能である．
  
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/SystemOverView.png" align="middle">
-図3 各クライアント協調時のシステム概要
+<br>図3 各クライアント協調時のシステム概要
 </div>
+<br>
 
 また図4のように各クライアントでロボット単体での遠隔操作システムとして使用することが可能である．組み合わせてロボット一体型の遠隔操作システムとしても扱うこともできる．
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/EachClientSystemView.png" align="middle">
-図4 各クライアント単体でのシステム概要
+<br>図4 各クライアント単体でのシステム概要
 </div>
+<br>
 
 ### 1.7　RTシステム構成
 図5と図6に既存のRTC群を使用したクライアント協調型フレキシブル遠隔操作システムの構成図を示す．システムは操作者が操作装置を扱うマスタ側と遠隔地でロボットを制御するスレーブ側に分かれている．
@@ -88,10 +89,10 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 #### マスタ側
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/SystemConfigurationMaster.png" align="middle">
-図5 RTシステム構成(マスタ側)
+<br>図5 RTシステム構成(マスタ側)
 </div>
+<br> 
 
-<br>     
 表1 RTC概要(マスタ側)
 
 |RTC名称|用途|
@@ -106,21 +107,23 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 #### スレーブ側
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/SystemConfigurationSlave.png" align="middle">
-図6 RTシステム概要(スレーブ側)
+<br>図6 RTシステム概要(スレーブ側)
 </div>
+<br>
 
 表2 RTC概要(スレーブ側)
+
 | RTC名称 | 用途 |
 |:--|:--|
 |URG()|測域センサからのデータ取得|
-|UrgController()|測域センサからのデータ補正用
-|iXsRSNPClient()|RSNPサーバーとの通信及びデータの送受信用
-|RTC_iWs09()|移動台車の制御用
-|MikataArmRSNPClient()|RSNPサーバーとの通信及びデータの送受信用
-|MikataArmKinema()|ロボットアームの指令値生成用
-|MikataArmController()|ロボットアームの制御用
-|CameraRSNPClient()|RSNPサーバーとの通信及びデータの送受信用
-|Screen_capture()|画像取得用
+|UrgController()|測域センサからのデータ補正用|
+|iXsRSNPClient()|RSNPサーバーとの通信及びデータの送受信用|
+|RTC_iWs09()|移動台車の制御用|
+|MikataArmRSNPClient()|RSNPサーバーとの通信及びデータの送受信用|
+|MikataArmKinema()|ロボットアームの指令値生成用|
+|MikataArmController()|ロボットアームの制御用|
+|CameraRSNPClient()|RSNPサーバーとの通信及びデータの送受信用|
+|Screen_capture()|画像取得用|
 |CooperativeController()|協調制御用|
      
 スレーブ側は10個のRTコンポーネントから構成されている．CooperativeController以外は先行研究で開発されたRTCを再利用したものである．主にロボットアームを制御するロボットアーム制御RTC群，移動台車を制御する移動台車制御RTC群，カメラ画像を取得するカメラRTC群からなっている．各RSNPクライアントRTコンポーネントでRSNPサーバーとの通信やマスタ側とのデータの送受信を行う．ロボットアーム制御RTC群では，MikataArmRSNPClientがRSNPサーバーからロボットアームの指令値(手先の位置X[m]，Y[m]，Z[m]，Pitch[rad])を受け取り，MikataArmKinemaを通して各関節の目標角度を算出し，MikataArmControllerでロボットアームを制御する．移動台車制御RTC群では，iXsRSNPClientがRSNPサーバーから移動台車の指令値(直進速度[m/s]，旋回速度[rad/s])を受け取り，RTC_iWs09で移動台車を制御する．カメラ制御RTC群では，Screen_captureで取得した画 像をCameraRSNPClientでRSNPサーバーに送りWebブラウザ上に表示する．
@@ -131,15 +134,17 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
     
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/CooperativeControllerRTC.png" align="middle">
-図7 協調制御RTC
+<br>図7 協調制御RTC
 </div>
+<br>
     
 開発した本RTCは，操作装置の入力値からロボットアームか移動台車どちらの制御を行うかを決定し，測域センサのデータから障害物の検出した位置によってロボットアームと移動台車の指令値に補正を行う ．図8に開発した協調制御RTCの接続イメージを示す．InPortには，ロボットアーム及び移動台車への指令値，そ操作装置の入力値，測域センサのデータを送信するポートを接続する．本稿で使用するロボットアームは４自由度，操作装置は３自由度の操作装置であるが，Configurationの値より操作装置とロボットアームの自由度は変更可能である．操縦装置の自由度は最大で３自由度，ロボットアームの自由度は最大でハンド含めて７自由度である．操縦装置は本稿で使用している３自由度の装置だけでなく，２自由度であるジョイスティックなどの操縦装置でも使用可能である．OutPortには，ロボットアームと移動台車を制御するRTコンポーネントで指令値を受信するポートを接続して使用する．表3，4，5にInPort，OutPort，Configurationの概要を示す．
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/CooperativeControllerRTCConnectionImage.png" align="middle">
-図8 協調制御RTCの接続イメージ
+<br>図8 協調制御RTCの接続イメージ
 </div>
+<br>
 
 <br> 
 表3 協調制御RTC概要(InPort)
@@ -172,22 +177,25 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/InPutValue.png" align="middle">
-図9　移動台車操作時(左)とロボットアームの操作時(右)の操作装置の値
+<br>図9　移動台車操作時(左)とロボットアームの操作時(右)の操作装置の値
 </div>
+<br>
 
 そこで，本RTCでは操作装置より受信したハンドル部の3軸の位置(X[m]，Y[m]，Z[m])の変化量，つまり速度を求め，ローパスフィルタとして移動平均を行った速度から最小二乗法で逐次傾きを求める．そして，評価関数として利用するシグモイド関数に代入して得た値から制御するロボットを決定する．以下に示すシグモイド関数はa>0に対してa→∞のときステップ関数に近づく．この性質を利用することで操作装置の入力から，操作量の変化の小さいロボットアームとそうでない移動台車を判別し制御するロボットを決定する．
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/Sigmoid.png" align="middle">
-シグモイド関数
+<br>シグモイド関数
 </div>
+<br>
 
 更に，移動台車に搭載されている測域センサにより前方180度範囲で障害物を検出し，検出した障害物の位置によって移動台車とロボットアームの制御に補正を行う．図10に示す②の範囲に障害物がある場合は，ロボットアームの手先位置の2軸(X，Z)のみの動作と移動台車の旋回のみを行い，①の範囲に障害物がある場合はロボットアームのみの制御に切り替わる．①と②の範囲に障害物を検出しない場合は，移動台車のみの制御を行う．以上の制御により一つの操縦装置で移動台車とロボットアームの協調制御を行い，移動台車が障害物に接触することなく操作することが可能である．なお，①と②はロボットアームの動作範囲から決定したものである．
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/ObstacleDetectArea.png" align="middle">
-図10 測域センサの障害物検出範囲
+<br>図10 測域センサの障害物検出範囲
 </div>
+<br>
 
 <br>
 
@@ -246,8 +254,9 @@ Eclipseを起動してRSNPサーバーのウィンドウから使用するサー
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/ServerWindow.png" align="middle">
-図11 サーバーウィンドウ
+<br>図11 サーバーウィンドウ
 </div>
+<br>
 
 #### 4. クライアントの準備
 マスタ側とスレーブ側のPCでStartNamingServiceを起動する．そして，Eclipseを起動してネームサーバーをlocalhostに接続する．マスタ側のPCでは以下のRTコンポーネントを起動する．
@@ -277,8 +286,9 @@ Eclipseを起動してRSNPサーバーのウィンドウから使用するサー
 
 <div align="center">
 <img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/ConfigurationSetupWindow.png" align="middle">
-図12 コンフィギュレーション値設定画面
+<br>図12 コンフィギュレーション値設定画面
 </div>
+<br>
 
 #### 7. システムの起動
 マスタ側とスレーブ側のRTコンポーネントをActivateすることで，クライアントがサーバーに接続され遠隔操作が可能となる．
