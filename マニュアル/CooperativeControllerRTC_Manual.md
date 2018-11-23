@@ -100,13 +100,11 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <b>Table1. RTC概要(マスタ側)</b>
-<div align="center">
 
 |RTC名称|用途|
 |:--|:--|
 |MobileRobotMasterClient1()|RSPNサーバーとの通信及びデータの送受信用|
 |FalconController()|操作装置入力用|
-</div>
 
 </div>
 <br>
@@ -124,7 +122,6 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <b>Table2. RTC概要(スレーブ側)</b>
-<div align="center">
 
 | RTC名称 | 用途 |
 |:--|:--|
@@ -139,7 +136,6 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 |Screen_capture()|画像取得用|
 |CooperativeController()|協調制御用|
 
-</div>
 </div>
 <br>
 <br>
@@ -165,7 +161,6 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <br><b>Table3. 協調制御RTC概要(InPort)</b>
-<div align="center">
 
 |InPort名称|データ型|機能<br>データの例|
 |:--|:--|:--|
@@ -173,32 +168,30 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 |MobileRobot|TimedVelocity2D|移動台車への直進速度[m/s]及び旋回角速度[rad/s]を取得．TimedVelocity2D.data.vyは使用しない．<br><br>TimedVelocity2D.data.vx = 直進速度<br>TimedVelocity2D.data.va = 旋回角速度|
 |LRF|RangeData|測域センサのレーザーn本の各長さ[mm]を取得<br>LRF.ranges.data[0] = レーザーの長さ<br>≀<br>LRF.ranges.data[n] = レーザーの長さ|
 |ControlleValue|TimedDoubleSeq|操作装置の入力値を取得．操縦装置の自由度は最大で３自由<br><br>ControlleValue.data[0] = X軸方向の入力[m]<br>ControlleValue.data[1] = Y軸方向の入力[m]<br>ControlleValue.data[2] = Z軸方向の入力[m]|
-</div>
+
 </div>
 <br>
 
 <div align="center">
 <br><b>Table4. 協調制御RTC概要(OutPort)</b>
-<div align="center">
 
 |OutPort名称|データ型|機能|
 |:--|:--|:--|
 |CooperativeArm|TimedDoubleSeq|補正したロボットアームの手先の目標位置[m]及び姿勢[rad]，ハンドの開閉角度[rad]を出力<br><br>CooperativeArm.data[0] = 手先補正位置X[m]<br>CooperativeArm.data[1] = 手先補正位置Y[m]<br>CooperativeArm.data[2] = 手先補正位置Z[m]<br>CooperativeArm.data[3] = 手先補正姿勢Roll[rad]<br>CooperativeArm.data[4] = 手先補正姿勢Pitch[rad]<br>CooperativeArm.data[5] = 手先補正姿勢Yaw[rad]<br>CooperativeArm.data[6] = ハンドの補正開閉角度[rad]|
 |CooperativeMobile|TimedVelocity2D|補正した移動台車への直進速度[m/s]及び旋回角度[rad]を出力<br><br>TimedVelocity2D.data.vx = 直進速度[m/s]<br>TimedVelocity2D.data.va = 旋回角速度[rad/s]|
-</div>
+
 </div>
 <br>
 
 <div align="center">
 <br><b>Table5. 協調制御RTC概要(Configuration)</b>
-<div align="center">
 
 |Configuration名称|データ型|機能|
 |:--|:--|:--|
 |inputDOF|int|操作装置の自由度|
 |armDOF|int|ロボットアームの自由度|
 |offset|double|制御ロボット切り替え時の入力値のオフセット|
-</div>
+
 </div>
 <br>
 
@@ -229,13 +222,13 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <b>Table6. 測域センサによる補正内容]()</b>
-<div align="center">
+
 |障害物の位置|指令値の補正内容|
 |:--:|:--|
 |①|移動台車の指令値を全て0に補正|
 |②|移動台車の直進成分とロボットアームのY軸方向の指令値を0に補正|
 |①と②以外|ロボットアームの指令値を全て0に補正|
-</div>
+
 </div>
 <br>
 
@@ -248,7 +241,6 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 
 <div align="center">
 <b>Table7. 用意するハードウェア</b>
-<div align="center">
 
 |名称|数量|
 |:--|:--|
@@ -260,7 +252,7 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 |サーバーPC|1|
 |モバイルルーター|1|
 |バッテリー|1|
-</div>
+
 </div>
 
 ### 3.2 動作環境
