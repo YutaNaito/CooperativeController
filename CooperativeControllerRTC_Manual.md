@@ -65,6 +65,8 @@ http://www.sic.shibaura-it.ac.jp/~matsuhir/index.html
 図1に操作者側(以降マスタ側)で使用する操縦装置を示す．操縦装置はNovint社のFalcon，3自由度のゲームコントローラーであり，X,Y,Zの3軸の位置及び速度の計測やモータのフィードバック機能による反力提示が可能である．
 
 [図1 ３自由度操縦装](https://github.com/YutaNaito/CooperativeController/tree/master/ManualPicture/Falcon.png)
+<img src = "https://github.com/YutaNaito/CooperativeController/tree/master/ManualPicture/Falcon.png">>
+
 
 ### 1.5. 移動作業ロボット
 図2に本システムで使用する遠隔地側(以降スレーブ側)の移動作業ロボットを示す．移動作業ロボットは，移動台車がイクシスリサーチ社のiWs09，4軸のロボットアームがRobotis社のMikataArmおよびWEBカメラがあり，以上の４つから構成されている．移動台車前方には，北陽電機社のLRF(測域センサ)が搭載されており，障害物回避が可能である． 
