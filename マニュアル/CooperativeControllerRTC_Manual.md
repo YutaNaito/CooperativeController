@@ -16,6 +16,8 @@
 1. 利用方法
     1. 用意するハードウェア
     1. 動作環境
+    1. 利用手順
+    1. ビルドの手順
 1. 使用ソフトウェア入手方法
 1. 参考文献
 ***
@@ -335,14 +337,14 @@ Eclipseを起動してRSNPサーバーのウィンドウから使用するサー
 CMakeを開き，ダウンロードしたファルダから「CMakeLists.txt」をCMakeのウィンドウ
 にドラッグ＆ドロップする．そして，「Where to build the binaries」のディレクトリに「/build」を加える．「Configure」，「Generate」の順にそれぞれ成功したらクリックして実行しいく．開発環境の選択ではVisual Studio 12 2013を指定する．
 <div align="center">
-<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/CMakeImage.png" align="middle">
+<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/CMakeImage.PNG" align="middle">
 <br><b>Fig13. CMakeの手順</b>
 </div>
 <br>
 <br>
 
 <div align="center">
-<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/CMakeImage2.png" align="middle">
+<img src="https://github.com/YutaNaito/CooperativeController/blob/master/ManualPicture/CMakeImage2.PNG" align="middle">
 <br><b>Fig14. 開発環境の選択</b>
 </div>
 <br>
